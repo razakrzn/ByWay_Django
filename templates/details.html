@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/details.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <title>ByWay | details</title>
+  </head>
+  <body>
+    <header>
+      <div class="wrapper">
+        <div class="logo-container">
+          <a href="{% url 'home' %}">
+            <span>
+              <img
+                src="{% static 'assets/icons/logo.svg' %}"
+                alt=" Logo"
+                class="logo"
+              />
+            </span>
+            <span>Byway</span>
+          </a>
+        </div>
+        <div class="account-container">
+          <a href="#" class="cart-icon">
+            <img
+              src="{% static 'assets/icons/wishlist.svg' %}"
+              alt="cart icon"
+            />
+          </a>
+          <a href="#" class="cart-icon">
+            <img
+              src="{% static 'assets/icons/cart.svg' %}"
+              alt="cart icon"
+            /> </a
+          ><a href="#" class="cart-icon">
+            <img src="{% static 'assets/icons/bell.svg' %}" alt="cart icon" />
+          </a>
+          <a href="#" class="account"> J </a>
+        </div>
+      </div>
+    </header>
+
+    <section class="sportlight-details">
+      <div class="wrapper">
+        <div class="nav-container">
+          <ul>
+            <li>
+              <a href="/">Home</a>
+              <span class="arrow">
+                <img
+                  class="icon"
+                  src="{% static 'assets/icons/short-arrow-right-black.svg' %}"
+                  alt="arrow-right"
+                />
+              </span>
+            </li>
+            <li>
+              <a href="/">{courseDetails.category}</a>
+              <span class="arrow">
+                <img
+                  class="icon"
+                  src="{% static 'assets/icons/short-arrow-right-black.svg' %}"
+                  alt="arrow-right"
+                />
+              </span>
+            </li>
+            <li>
+              <a href=""> {courseDetails.subject} </a>
+            </li>
+          </ul>
+        </div>
+        <div class="contents">
+          <h1>Introduction to User Experience Design</h1>
+          <p>
+            This course is meticulously crafted to provide you with a
+            foundational understanding of the principles, methodologies, and
+            tools that drive exceptional user experiences in the digital
+            landscape.
+          </p>
+          <div class="info-wrapper">
+            <span class="rating">4.6 </span>
+            <span class="star">
+              <img src="{% static 'assets/icons/star.svg' %}" alt="star" />
+            </span>
+            <span class="rating-counts"> (651651 rating) </span>
+            <span class="duration"
+              >22 Total Hours. 155 Lectures. All levels</span
+            >
+          </div>
+          <div class="author-wrapper">
+            <span class="author">
+              <img
+                src="{% static 'assets/icons/span-8.svg' %}"
+                alt="author image"
+                class="author-image"
+              />
+            </span>
+            <span class="author-name">
+              Created by <span>Ronal Richards</span>
+            </span>
+          </div>
+          <div class="language-wrapper">
+            <span class="language-icon">
+              <img
+                src="{% static 'assets/icons/language.svg' %}"
+                alt="language"
+              />
+            </span>
+            <span class="languages">English, Spanish, Italian, German</span>
+          </div>
+        </div>
+
+        <div class="cart-box">
+          <div class="top-section">
+            <div class="image-wrapper">
+              <img src="{% static 'assets/images/img.jpg' %}" alt="image" />
+            </div>
+            <div class="box">
+              <div class="price-section">
+                <span class="special-price"> $49.5 </span>
+                <span class="old-price">$99.5</span>
+                <span class="offer">50% Off</span>
+              </div>
+              <button class="cart">Add To Cart</button>
+              <button class="buy">Buy Now</button>
+            </div>
+          </div>
+          <div class="media-section">
+            <p>Share</p>
+            <ul class="media-icons">
+              <li>
+                <a
+                  href="https://www.facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src="{% static 'assets/icons/facebook.png' %}"
+                    alt="facebook"
+                  />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.github.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src="{% static 'assets/icons/github.png' %}"
+                    alt="twitter"
+                  />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.google.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src="{% static 'assets/icons/google.png' %}"
+                    alt="linkedin"
+                  />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src="{% static 'assets/icons/twitter.png' %}"
+                    alt="linkedin"
+                  />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.microsoft.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src="{% static 'assets/icons/microsoft.png' %}"
+                    alt="linkedin"
+                  />
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- main details section -->
+
+    <section class="main-details">
+      <div class="wrapper">
+        <div class="button-container">
+          <div class="boxes">
+            <div class="box">
+              <button>Description</button>
+            </div>
+            <div class="box">
+              <button>Instructor</button>
+            </div>
+            <div class="box">
+              <button>Syllabus</button>
+            </div>
+            <div class="box">
+              <button>Reviews</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Description section  -->
+        <section class="Description">
+          <div class="text-wrapper">
+            <div class="top-section">
+              <h2 class="title">Course Description</h2>
+              <p class="paragraph">
+                This interactive e-learning course will introduce you to User
+                Experience (UX) design, the art of creating products and
+                services that are intuitive, enjoyable, and user-friendly. Gain
+                a solid foundation in UX principles and learn to apply them in
+                real-world scenarios through engaging modules and interactive
+                exercises.
+              </p>
+            </div>
+            <div class="bottom-section">
+              <h2 class="title">Certification</h2>
+              <p class="paragraph">
+                At Byway, we understand the significance of formal recognition
+                for your hard work and dedication to continuous learning. Upon
+                successful completion of our courses, you will earn a
+                prestigious certification that not only validates your expertise
+                but also opens doors to new opportunities in your chosen field.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Instructor section  -->
+
+        <section class="instructor">
+          <div class="instructor-wrapper">
+            <h4 class="title">Instructor</h4>
+            <h4 class="name">Ronald Richards</h4>
+            <p class="designation">UI/UX Designer</p>
+            <div class="profile-container">
+              <span class="profile-pic">
+                <img src="{% static 'assets/icons/span-8.svg' %}" alt="" />
+              </span>
+              <div class="details-container">
+                <ul class="points">
+                  <li class="poin">
+                    <span class="icon"><img src="" alt="" /></span>
+                    <small class="text">40,445 Reviews</small>
+                  </li>
+                  <li class="poin">
+                    <span class="icon"><img src="" alt="" /></span>
+                    <small class="text">40,445 Reviews</small>
+                  </li>
+                  <li class="poin">
+                    <span class="icon"><img src="" alt="" /></span>
+                    <small class="text">40,445 Reviews</small>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <p class="about-instructor">
+              With over a decade of industry experience, Ronald brings a wealth
+              of practical knowledge to the classroom. He has played a pivotal
+              role in designing user-centric interfaces for renowned tech
+              companies, ensuring seamless and engaging user experiences.
+            </p>
+          </div>
+        </section>
+
+        <!-- Syllabus section  -->
+        <section class="syllabus">
+          <div class="syllabus-wrapper">
+            <h4 class="title">Syllabus</h4>
+            <div class="table">
+              <div class="row">
+                <div class="first-column">
+                  <span class="icon">
+                    <img
+                      src="{% static 'assets/icons/arrow-down.svg' %}"
+                      alt="arrow-down"
+                    />
+                  </span>
+                  <h5 class="sub-title">Introduction to UX Design</h5>
+                </div>
+                <div class="second-column">
+                  <p class="lessons">5 Lessons</p>
+                  <p class="hour">1 hour</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Reviews section  -->
+        <section class="reviews">
+          <h4 class="title">Learner Reviews</h4>
+          <div class="reviews-wrapper">
+            <div class="left">
+              <div class="top">
+                <span class="star-icon">
+                  <img
+                    src="{% static 'assets/icons/star.svg' %}"
+                    alt="star-icon"
+                  />
+                </span>
+                <span class="reviews-rating">4.6</span>
+                <small class="review-count">146,951 reviews</small>
+              </div>
+              <div class="star-pyramid-container">
+                <span class="star-icon">
+                  <img
+                    src="{% static 'assets/icons/star.svg' %}"
+                    alt="star-icon"
+                  />
+                </span>
+                <span class="reviews-persantage">80%</span>
+              </div>
+            </div>
+
+            <div class="right">
+              <div class="right-wrapper">
+                <div class="user-profile">
+                  <span class="profile-pic">
+                    <img
+                      src="{% static 'assets/icons/span-6.svg' %}"
+                      alt="profile-pic"
+                    />
+                  </span>
+                  <h5 class="name">Mark Doe</h5>
+                </div>
+                <div class="contents">
+                  <div class="top">
+                    <span class="star-icon">
+                      <img
+                        src="{% static 'assets/icons/star.svg' %}"
+                        alt="star-icon"
+                      />
+                    </span>
+                    <span class="rating">5</span>
+                    <span class="review-date"
+                      >Reviewed on 22nd March, 2024</span
+                    >
+                  </div>
+                  <p>
+                    I was initially apprehensive, having no prior design
+                    experience. But the instructor, John Doe, did an amazing job
+                    of breaking down complex concepts into easily digestible
+                    modules. The video lectures were engaging, and the
+                    real-world examples really helped solidify my understanding.
+                  </p>
+                </div>
+              </div>
+              <button>View more Reviews</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- testimonials  -->
+
+    <section class="testimonials">
+      <div class="wrapper">
+        <div class="top">
+          <div class="heading-container">
+            <h3>What Our Customer Say About Us</h3>
+          </div>
+          <div class="navigation">
+            <span
+              class="custom-swiper-button-prev"
+              role="button"
+              aria-label="Previous slide"
+              tabindex="0"
+            >
+              <img
+                src="{% static 'assets/icons/short-arrow-left.svg' %}"
+                alt="left-arrow"
+              />
+            </span>
+            <span
+              class="custom-swiper-button-next"
+              role="button"
+              aria-label="Next slide"
+              tabindex="0"
+            >
+              <img
+                src="{% static 'assets/icons/short-arrow-right.svg' %}"
+                alt="right-arrow"
+              />
+            </span>
+          </div>
+        </div>
+        <div class="contents">
+          <div class="swiper">
+            <div class="items swiper-wrapper">
+              <a href="#" class="item swiper-slide">
+                <span class="quote">
+                  <img
+                    src="{% static 'assets/icons/quotes.svg' %}"
+                    alt="quote-icon"
+                  />
+                </span>
+                <p>
+                  "Byway's tech courses are top-notch! As someone who's always
+                  looking to stay ahead in the rapidly evolving tech world, I
+                  appreciate the up-to-date content and engaging multimedia."
+                </p>
+                <div class="author-info">
+                  <span class="author-profile">
+                    <img
+                      src="{% static 'assets/icons/span-7.svg' %}"
+                      alt="image"
+                    />
+                  </span>
+                  <div class="text">
+                    <h5>John Doe</h5>
+                    <small>Software Engineer</small>
+                  </div>
+                </div>
+              </a>
+              <a href="#" class="item swiper-slide">
+                <span class="quote">
+                  <img
+                    src="{% static 'assets/icons/quotes.svg' %}"
+                    alt="quote-icon"
+                  />
+                </span>
+                <p>
+                  "Byway's tech courses are top-notch! As someone who's always
+                  looking to stay ahead in the rapidly evolving tech world, I
+                  appreciate the up-to-date content and engaging multimedia."
+                </p>
+                <div class="author-info">
+                  <span class="author-profile">
+                    <img
+                      src="{% static 'assets/icons/span-7.svg' %}"
+                      alt="image"
+                    />
+                  </span>
+                  <div class="text">
+                    <h5>John Doe</h5>
+                    <small>Software Engineer</small>
+                  </div>
+                </div>
+              </a>
+              <a href="#" class="item swiper-slide">
+                <span class="quote">
+                  <img
+                    src="{% static 'assets/icons/quotes.svg' %}"
+                    alt="quote-icon"
+                  />
+                </span>
+                <p>
+                  "Byway's tech courses are top-notch! As someone who's always
+                  looking to stay ahead in the rapidly evolving tech world, I
+                  appreciate the up-to-date content and engaging multimedia."
+                </p>
+                <div class="author-info">
+                  <span class="author-profile">
+                    <img
+                      src="{% static 'assets/icons/span-7.svg' %}"
+                      alt="image"
+                    />
+                  </span>
+                  <div class="text">
+                    <h5>John Doe</h5>
+                    <small>Software Engineer</small>
+                  </div>
+                </div>
+              </a>
+              <a href="#" class="item swiper-slide">
+                <span class="quote">
+                  <img
+                    src="{% static 'assets/icons/quotes.svg' %}"
+                    alt="quote-icon"
+                  />
+                </span>
+                <p>
+                  "Byway's tech courses are top-notch! As someone who's always
+                  looking to stay ahead in the rapidly evolving tech world, I
+                  appreciate the up-to-date content and engaging multimedia."
+                </p>
+                <div class="author-info">
+                  <span class="author-profile">
+                    <img
+                      src="{% static 'assets/icons/span-7.svg' %}"
+                      alt="image"
+                    />
+                  </span>
+                  <div class="text">
+                    <h5>John Doe</h5>
+                    <small>Software Engineer</small>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- footer -->
+
+    <footer>
+      <div class="wrapper">
+        <div class="items">
+          <div class="item item1">
+            <a href="{% url 'details' %}" class="logo">
+              <img src="{% static 'assets/icons/logo-big.svg' %}" alt="icon" />
+            </a>
+            <p>
+              Empowering learners through accessible and engaging online
+              education. <br />
+              Byway is a leading online learning platform dedicated to providing
+              high-quality, flexible, and affordable educational experiences.
+            </p>
+          </div>
+          <div class="item item2">
+            <h5>Get Help</h5>
+            <ul>
+              <li>
+                <a href="">Contact Us</a>
+              </li>
+              <li>
+                <a href="">Latest Articles</a>
+              </li>
+              <li>
+                <a href="">FAQ</a>
+              </li>
+            </ul>
+          </div>
+          <div class="item item3">
+            <h5>Programs</h5>
+            <ul>
+              <li>
+                <a href="">Art & Design</a>
+              </li>
+              <li>
+                <a href="">Business</a>
+              </li>
+              <li>
+                <a href="">IT & Software</a>
+              </li>
+              <li>
+                <a href="">Languages</a>
+              </li>
+              <li>
+                <a href="">Programming</a>
+              </li>
+            </ul>
+          </div>
+          <div class="item item4">
+            <h5>Contact Us</h5>
+            <ul>
+              <li>
+                <a href="">Address: 123 Main Street, Anytown, CA 12345</a>
+              </li>
+              <li><a href="">Tel: +(123) 456-7890</a></li>
+              <li><a href="">Mail: bywayedu@webkul.in</a></li>
+            </ul>
+            <div class="social-media">
+              <ul>
+                <li>
+                  <a href="https://www.facebook.com/" target="blank"
+                    ><img
+                      src="{% static 'assets/icons/facebook.png' %}"
+                      alt="facebook"
+                  /></a>
+                </li>
+                <li>
+                  <a href="https://github.com/" target="blank"
+                    ><img
+                      src="{% static 'assets/icons/github.png' %}"
+                      alt="github"
+                  /></a>
+                </li>
+                <li>
+                  <a href="https://www.google.co.in/" target="blank"
+                    ><img
+                      src="{% static 'assets/icons/google.png' %}"
+                      alt="google"
+                  /></a>
+                </li>
+                <li>
+                  <a href="https://x.com" target="blank"
+                    ><img
+                      src="{% static 'assets/icons/twitter.png' %}"
+                      alt="twitter"
+                  /></a>
+                </li>
+                <li>
+                  <a href="https://www.microsoft.com" target="blank"
+                    ><img
+                      src="{% static 'assets/icons/microsoft.png' %}"
+                      alt="microsoft"
+                  /></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- js  -->
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="{% static 'javascript/swiper.js' %}"></script>
+  </body>
+</html>
