@@ -23,7 +23,7 @@
     <header>
       <div class="wrapper">
         <div class="logo-container">
-          <a href="{% url 'details' %}">
+          <a href="{% url 'web:details' %}">
             <span>
               <img
                 src="{% static 'assets/icons/logo.svg' %}"
@@ -575,7 +575,7 @@
       <div class="wrapper">
         <div class="items">
           <div class="item item1">
-            <a href="{% url 'home' %}" class="logo">
+            <a href="{% url 'web:home' %}" class="logo">
               <img src="{% static 'assets/icons/logo-big.svg' %}" alt="icon" />
             </a>
             <p>
