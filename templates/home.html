@@ -1,678 +1,287 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}ByWay{% endblock %}
+{% block content %}
+<!-- sportlight -->
+<section class="sportlight">
+  <div class="wrapper">
+    <div class="left">
+      <h1>Unlock Your Potential with Byway</h1>
+      <p>
+        Welcome to Byway, where learning knows no bounds. We believe that
+        education is the key to personal and professional growth, and we're here
+        to guide you on your journey to success.
+      </p>
+      <a href="" class="button"> Start your instructor journey </a>
+    </div>
+    <div class="right">
+      <div class="image-wrapper">
+        <img
+          src="{% static 'assets/images/sportlight.png' %}"
+          alt="Sportlight image"
+        />
+      </div>
+    </div>
+  </div>
+</section>
 
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/HomeStyle.css' %}" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
-    />
+<!-- couse-details -->
 
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-    <title>ByWay</title>
-  </head>
-  <body>
-    <header>
-      <div class="wrapper">
-        <div class="logo-container">
-          <a href="{% url 'web:details' %}">
-            <span>
+<section class="course-counts">
+  <div class="wrapper">
+    <div class="items">
+      <div class="item">
+        <h2>250+</h2>
+        <p>Courses by our best mentors</p>
+      </div>
+      <div class="item">
+        <h2>1000+</h2>
+        <p>Courses by our best mentors</p>
+      </div>
+      <div class="item">
+        <h2>15+</h2>
+        <p>Courses by our best mentors</p>
+      </div>
+      <div class="item">
+        <h2>2400+</h2>
+        <p>Courses by our best mentors</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- categories-section -->
+
+<section class="main">
+  <div class="wrapper">
+    <!-- wrapper -->
+
+    <!-- top categories -->
+    <div class="top-categories">
+      <div class="top">
+        <h3>Top Categories</h3>
+        <a href="#" class="see-all">See All</a>
+      </div>
+      <div class="widgets">
+        {% for category in categories %}
+        <a href="" class="card">
+          <div class="content-wrapper">
+            <span class="round-bg">
+              <img src="{{category.icon.url}}" alt="astrology-icon" />
+            </span>
+            <h4>{{category.name}}</h4>
+            <p>{{category.courses_count}}</p>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- top courses -->
+    <div class="top-courses">
+      <div class="top">
+        <h3>Top Courses</h3>
+        <a href="{% url 'web:top_courses' %}" class="see-all">See All</a>
+      </div>
+      <div class="widgets">
+        {% for course in courses|slice:"4" %}
+        <a href="{% url 'web:course_details' course.id %}" class="card">
+          <div class="content-wrapper">
+            <div class="image-wrapper">
+              <img src="{{course.image.url}}" alt="image" />
+            </div>
+            <h5>{{ course.title|truncatewords:10 }}</h5>
+            <p>{{ course.instructor }}</p>
+            <div class="rating-container">
+              <span class="rating">{{ course.rating }}</span>
+              <span class="star star-rating-container"></span>
+              <small>({{ course.rating_count }} Ratings)</small>
+            </div>
+            <p class="duration">{{ course.duration }}</p>
+            <h4>${{ course.discounted_price }}</h4>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- top instructors -->
+    <div class="top-instructors">
+      <div class="top">
+        <h3>Top Instructors</h3>
+        <a href="#" class="see-all" id="see-all-button">See All</a>
+      </div>
+      <div class="widgets">
+        {% for instructor in top_instructors %}
+        <a href="" class="card">
+          <div class="content-wrapper">
+            <div class="image-wrapper">
+              <img src="{{ instructor.image.url }}" alt="image" />
+            </div>
+            <h5>{{ instructor.name }}</h5>
+            <small>{{ instructor.designation }}</small>
+            <span class="line"></span>
+            <div class="rating-box">
+              <span class="star-box">
+                <img src="{% static 'assets/icons/star.svg' %}" alt="star" />
+                <label for="">{{ instructor.rating }}</label>
+              </span>
+              <span class="students-count">
+                <small>{{ instructor.students }} Students</small>
+              </span>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+
+        <!-- Hidden instructors -->
+        <div
+          class="top-instructors"
+          id="remaining-instructors"
+          style="display: none"
+        >
+          <div class="widgets">
+            {% for instructor in remaining_instructors %}
+            <a href="" class="card">
+              <div class="content-wrapper">
+                <div class="image-wrapper">
+                  <img src="{{ instructor.image.url }}" alt="image" />
+                </div>
+                <h5>{{ instructor.name }}</h5>
+                <small>{{ instructor.designation }}</small>
+                <span class="line"></span>
+                <div class="rating-box">
+                  <span class="star-box">
+                    <img
+                      src="{% static 'assets/icons/star.svg' %}"
+                      alt="star"
+                    />
+                    <label for="">{{ instructor.rating }}</label>
+                  </span>
+                  <span class="students-count">
+                    <small>{{ instructor.students }}</small>
+                  </span>
+                </div>
+              </div>
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- wrapper -->
+  </div>
+</section>
+
+<!-- testimonials -->
+<section class="testimonials">
+  <div class="wrapper">
+    <div class="top">
+      <div class="heading-container">
+        <h3>What Our Customer Say About Us</h3>
+      </div>
+      <div class="navigation">
+        <span
+          class="custom-swiper-button-prev"
+          role="button"
+          aria-label="Previous slide"
+          tabindex="0"
+        >
+          <img
+            src="{% static 'assets/icons/short-arrow-left.svg' %}"
+            alt="left-arrow"
+          />
+        </span>
+        <span
+          class="custom-swiper-button-next"
+          role="button"
+          aria-label="Next slide"
+          tabindex="0"
+        >
+          <img
+            src="{% static 'assets/icons/short-arrow-right.svg' %}"
+            alt="right-arrow"
+          />
+        </span>
+      </div>
+    </div>
+    <div class="contents">
+      <div class="swiper">
+        <div class="items swiper-wrapper">
+          {% for testimonial in testimonials %}
+          <a href="#" class="item swiper-slide">
+            <span class="quote">
               <img
-                src="{% static 'assets/icons/logo.svg' %}"
-                alt=" Logo"
-                class="logo"
+                src="{% static 'assets/icons/quotes.svg' %}"
+                alt="quote-icon"
               />
             </span>
-            <span>Byway</span>
+            <p>"{{testimonial.description}}"</p>
+            <div class="author-info">
+              <span class="author-profile">
+                <img src="{{ testimonial.image.url}}" alt="image" />
+              </span>
+              <div class="text">
+                <h5>{{testimonial.name}}</h5>
+                <small>{{testimonial.designation}}</small>
+              </div>
+            </div>
           </a>
-        </div>
-        <div class="account-container">
-          <span class="cart-icon">
-            <img src="{% static 'assets/icons/cart.svg' %}" alt="cart icon" />
-          </span>
-          <a href="#" class="log-in">log in</a>
-          <a href="#" class="sign-up">sign up</a>
+          {% endfor %}
         </div>
       </div>
-    </header>
-    <!-- sportlight -->
+    </div>
+  </div>
+</section>
 
-    <section class="sportlight">
-      <div class="wrapper">
-        <div class="left">
-          <h1>Unlock Your Potential with Byway</h1>
-          <p>
-            Welcome to Byway, where learning knows no bounds. We believe that
-            education is the key to personal and professional growth, and we're
-            here to guide you on your journey to success.
-          </p>
-          <a href="" class="button"> Start your instructor journey </a>
-        </div>
-        <div class="right">
-          <div class="image-wrapper">
-            <img
-              src="{% static 'assets/images/sportlight.png' %}"
-              alt="Sportlight image"
-            />
-          </div>
-        </div>
+<!-- more -->
+
+<section class="more-about">
+  <div class="wrapper">
+    <div class="top-section">
+      <div class="left-img">
+        <img src="{% static 'assets/images/model-4.jpg' %}" alt="image" />
       </div>
-    </section>
-
-    <!-- couse-details -->
-
-    <section class="course-counts">
-      <div class="wrapper">
-        <div class="items">
-          <div class="item">
-            <h2>250+</h2>
-            <p>Courses by our best mentors</p>
-          </div>
-          <div class="item">
-            <h2>250+</h2>
-            <p>Courses by our best mentors</p>
-          </div>
-          <div class="item">
-            <h2>250+</h2>
-            <p>Courses by our best mentors</p>
-          </div>
-          <div class="item">
-            <h2>250+</h2>
-            <p>Courses by our best mentors</p>
-          </div>
-        </div>
+      <div class="right-content">
+        <h4>Become an Instructor</h4>
+        <p>
+          Instructors from around the world teach millions of students on Byway.
+          We provide the tools and skills to teach what you love.
+        </p>
+        <a href="" class="button">
+          <small>Start Your Instructor Journey</small>
+          <span
+            ><img src="{% static 'assets/icons/arrow-right.svg' %}" alt="icon"
+          /></span>
+        </a>
       </div>
-    </section>
+    </div>
 
-    <!-- categories-section -->
-
-    <section class="main">
-      <div class="wrapper">
-        <!-- wrapper -->
-
-        <!-- top categories -->
-        <div class="top-categories">
-          <div class="top">
-            <h3>Top Categories</h3>
-            <a href="#" class="see-all">See All</a>
-          </div>
-          <div class="widgets">
-            <a href="" class="card">
-              <div class="content-wrapper">
-                <span class="round-bg">
-                  <img
-                    src="{% static 'assets/icons/astrology.svg' %}"
-                    alt="astrology-icon"
-                  />
-                </span>
-                <h4>Astrology</h4>
-                <p>11 Courses</p>
-              </div>
-            </a>
-            <a href="#" class="card">
-              <div class="content-wrapper">
-                <span class="round-bg">
-                  <img
-                    src="{% static 'assets/icons/devlopment.svg' %}"
-                    alt="astrology-icon"
-                  />
-                </span>
-                <h4>Development</h4>
-                <p>12 Courses</p>
-              </div>
-            </a>
-            <a href="#" class="card">
-              <div class="content-wrapper">
-                <span class="round-bg">
-                  <img
-                    src="{% static 'assets/icons/marketing.svg' %}"
-                    alt="astrology-icon"
-                  />
-                </span>
-                <h4>Marketing</h4>
-                <p>12 Courses</p>
-              </div>
-            </a>
-            <a href="#" class="card">
-              <div class="content-wrapper">
-                <span class="round-bg">
-                  <img
-                    src="{% static 'assets/icons/physics.svg' %}"
-                    alt="astrology-icon"
-                  />
-                </span>
-                <h4>Physics</h4>
-                <p>14 Courses</p>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <!-- top courses -->
-        <div class="top-courses">
-          <div class="top">
-            <h3>Top Courses</h3>
-            <a href="#" class="see-all">See All</a>
-          </div>
-          <div class="widgets">
-            <a href="#" class="card">
-              <div class="content-wrapper">
-                <div class="image-wrapper">
-                  <img src="{% static 'assets/images/bg.jpg' %}" alt="image" />
-                </div>
-                <h5>Beginner’s Guide to Design</h5>
-                <p>By Ronald Richards</p>
-                <div class="rating-container">
-                  <span class="star-box">
-                    <img
-                      src="{% static 'assets/icons/star.svg' %}"
-                      alt="start icon"
-                    />
-                  </span>
-                  <small>(1200 Ratings)</small>
-                </div>
-                <p>22 Total Hours. 155 Lectures. Beginner</p>
-                <h4>$149.9</h4>
-              </div>
-            </a>
-            <a href="#" class="card">
-              <div class="content-wrapper">
-                <div class="image-wrapper">
-                  <img src="{% static 'assets/images/bg.jpg' %}" alt="image" />
-                </div>
-                <h5>Beginner’s Guide to Design</h5>
-                <p>By Ronald Richards</p>
-                <div class="rating-container">
-                  <span class="star-box">
-                    <img
-                      src="{% static 'assets/icons/star.svg' %}"
-                      alt="start icon"
-                    />
-                  </span>
-                  <small>(1200 Ratings)</small>
-                </div>
-                <p>22 Total Hours. 155 Lectures. Beginner</p>
-                <h4>$149.9</h4>
-              </div> </a
-            ><a href="#" class="card">
-              <div class="content-wrapper">
-                <div class="image-wrapper">
-                  <img src="{% static 'assets/images/bg.jpg' %}" alt="image" />
-                </div>
-                <h5>Beginner’s Guide to Design</h5>
-                <p>By Ronald Richards</p>
-                <div class="rating-container">
-                  <span class="star-box">
-                    <img
-                      src="{% static 'assets/icons/star.svg' %}"
-                      alt="start icon"
-                    />
-                  </span>
-                  <small>(1200 Ratings)</small>
-                </div>
-                <p>22 Total Hours. 155 Lectures. Beginner</p>
-                <h4>$149.9</h4>
-              </div> </a
-            ><a href="#" class="card">
-              <div class="content-wrapper">
-                <div class="image-wrapper">
-                  <img src="{% static 'assets/images/bg.jpg' %}" alt="image" />
-                </div>
-                <h5>Beginner’s Guide to Design</h5>
-                <p>By Ronald Richards</p>
-                <div class="rating-container">
-                  <span class="star-box">
-                    <img
-                      src="{% static 'assets/icons/star.svg' %}"
-                      alt="start icon"
-                    />
-                  </span>
-                  <small>(1200 Ratings)</small>
-                </div>
-                <p>22 Total Hours. 155 Lectures. Beginner</p>
-                <h4>$149.9</h4>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <!-- top instructors -->
-        <div class="top-instructors">
-          <div class="top">
-            <h3>Top Instructors</h3>
-            <a href="#" class="see-all">See All</a>
-          </div>
-          <div class="widgets">
-            <a href="" class="card">
-              <div class="content-wrapper">
-                <div class="image-wrapper">
-                  <img
-                    src="{% static 'assets/images/model-5.jpg' %}"
-                    alt="image"
-                  />
-                </div>
-                <h5>Ronald Richards</h5>
-                <small>UI/UX Designer</small>
-                <span class="line"></span>
-                <div class="rating-box">
-                  <span class="star-box">
-                    <img
-                      src="{% static 'assets/icons/star.svg' %}"
-                      alt="star"
-                    />
-                    <label for="">4.9</label>
-                  </span>
-                  <span class="students-count">
-                    <small>2400 Students</small>
-                  </span>
-                </div>
-              </div>
-            </a>
-            <a href="" class="card">
-              <div class="content-wrapper">
-                <div class="image-wrapper">
-                  <img
-                    src="{% static 'assets/images/model-5.jpg' %}"
-                    alt="image"
-                  />
-                </div>
-                <h5>Ronald Richards</h5>
-                <small>UI/UX Designer</small>
-                <span class="line"></span>
-                <div class="rating-box">
-                  <span class="star-box">
-                    <img
-                      src="{% static 'assets/icons/star.svg' %}"
-                      alt="star"
-                    />
-                    <label for="">4.9</label>
-                  </span>
-                  <span class="students-count">
-                    <small>2400 Students</small>
-                  </span>
-                </div>
-              </div> </a
-            ><a href="" class="card">
-              <div class="content-wrapper">
-                <div class="image-wrapper">
-                  <img
-                    src="{% static 'assets/images/model-5.jpg' %}"
-                    alt="image"
-                  />
-                </div>
-                <h5>Ronald Richards</h5>
-                <small>UI/UX Designer</small>
-                <span class="line"></span>
-                <div class="rating-box">
-                  <span class="star-box">
-                    <img
-                      src="{% static 'assets/icons/star.svg' %}"
-                      alt="star"
-                    />
-                    <label for="">4.9</label>
-                  </span>
-                  <span class="students-count">
-                    <small>2400 Students</small>
-                  </span>
-                </div>
-              </div> </a
-            ><a href="" class="card">
-              <div class="content-wrapper">
-                <div class="image-wrapper">
-                  <img
-                    src="{% static 'assets/images/model-5.jpg' %}"
-                    alt="image"
-                  />
-                </div>
-                <h5>Ronald Richards</h5>
-                <small>UI/UX Designer</small>
-                <span class="line"></span>
-                <div class="rating-box">
-                  <span class="star-box">
-                    <img
-                      src="{% static 'assets/icons/star.svg' %}"
-                      alt="star"
-                    />
-                    <label for="">4.9</label>
-                  </span>
-                  <span class="students-count">
-                    <small>2400 Students</small>
-                  </span>
-                </div>
-              </div> </a
-            ><a href="" class="card">
-              <div class="content-wrapper">
-                <div class="image-wrapper">
-                  <img
-                    src="{% static 'assets/images/model-5.jpg' %}"
-                    alt="image"
-                  />
-                </div>
-                <h5>Ronald Richards</h5>
-                <small>UI/UX Designer</small>
-                <span class="line"></span>
-                <div class="rating-box">
-                  <span class="star-box">
-                    <img
-                      src="{% static 'assets/icons/star.svg' %}"
-                      alt="star"
-                    />
-                    <label for="">4.9</label>
-                  </span>
-                  <span class="students-count">
-                    <small>2400 Students</small>
-                  </span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <!-- wrapper -->
+    <div class="bottom-section">
+      <div class="left-content">
+        <h4>Transform your life through education</h4>
+        <p>
+          Learners around the world are launching new careers, advancing in
+          their fields, and enriching their lives.
+        </p>
+        <a href="" class="button">
+          <small>Checkout Courses</small>
+          <span
+            ><img src="{% static 'assets/icons/arrow-right.svg' %}" alt="icon"
+          /></span>
+        </a>
       </div>
-    </section>
-
-    <!-- testimonials -->
-    <section class="testimonials">
-      <div class="wrapper">
-        <div class="top">
-          <div class="heading-container">
-            <h3>What Our Customer Say About Us</h3>
-          </div>
-          <div class="navigation">
-            <span
-              class="custom-swiper-button-prev"
-              role="button"
-              aria-label="Previous slide"
-              tabindex="0"
-            >
-              <img
-                src="{% static 'assets/icons/short-arrow-left.svg' %}"
-                alt="left-arrow"
-              />
-            </span>
-            <span
-              class="custom-swiper-button-next"
-              role="button"
-              aria-label="Next slide"
-              tabindex="0"
-            >
-              <img
-                src="{% static 'assets/icons/short-arrow-right.svg' %}"
-                alt="right-arrow"
-              />
-            </span>
-          </div>
-        </div>
-        <div class="contents">
-          <div class="swiper">
-            <div class="items swiper-wrapper">
-              <a href="#" class="item swiper-slide">
-                <span class="quote">
-                  <img
-                    src="{% static 'assets/icons/quotes.svg' %}"
-                    alt="quote-icon"
-                  />
-                </span>
-                <p>
-                  "Byway's tech courses are top-notch! As someone who's always
-                  looking to stay ahead in the rapidly evolving tech world, I
-                  appreciate the up-to-date content and engaging multimedia."
-                </p>
-                <div class="author-info">
-                  <span class="author-profile">
-                    <img
-                      src="{% static 'assets/icons/span-7.svg' %}"
-                      alt="image"
-                    />
-                  </span>
-                  <div class="text">
-                    <h5>John Doe</h5>
-                    <small>Software Engineer</small>
-                  </div>
-                </div>
-              </a>
-              <a href="#" class="item swiper-slide">
-                <span class="quote">
-                  <img
-                    src="{% static 'assets/icons/quotes.svg' %}"
-                    alt="quote-icon"
-                  />
-                </span>
-                <p>
-                  "Byway's tech courses are top-notch! As someone who's always
-                  looking to stay ahead in the rapidly evolving tech world, I
-                  appreciate the up-to-date content and engaging multimedia."
-                </p>
-                <div class="author-info">
-                  <span class="author-profile">
-                    <img
-                      src="{% static 'assets/icons/span-7.svg' %}"
-                      alt="image"
-                    />
-                  </span>
-                  <div class="text">
-                    <h5>John Doe</h5>
-                    <small>Software Engineer</small>
-                  </div>
-                </div>
-              </a>
-              <a href="#" class="item swiper-slide">
-                <span class="quote">
-                  <img
-                    src="{% static 'assets/icons/quotes.svg' %}"
-                    alt="quote-icon"
-                  />
-                </span>
-                <p>
-                  "Byway's tech courses are top-notch! As someone who's always
-                  looking to stay ahead in the rapidly evolving tech world, I
-                  appreciate the up-to-date content and engaging multimedia."
-                </p>
-                <div class="author-info">
-                  <span class="author-profile">
-                    <img
-                      src="{% static 'assets/icons/span-7.svg' %}"
-                      alt="image"
-                    />
-                  </span>
-                  <div class="text">
-                    <h5>John Doe</h5>
-                    <small>Software Engineer</small>
-                  </div>
-                </div>
-              </a>
-              <a href="#" class="item swiper-slide">
-                <span class="quote">
-                  <img
-                    src="{% static 'assets/icons/quotes.svg' %}"
-                    alt="quote-icon"
-                  />
-                </span>
-                <p>
-                  "Byway's tech courses are top-notch! As someone who's always
-                  looking to stay ahead in the rapidly evolving tech world, I
-                  appreciate the up-to-date content and engaging multimedia."
-                </p>
-                <div class="author-info">
-                  <span class="author-profile">
-                    <img
-                      src="{% static 'assets/icons/span-7.svg' %}"
-                      alt="image"
-                    />
-                  </span>
-                  <div class="text">
-                    <h5>John Doe</h5>
-                    <small>Software Engineer</small>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
+      <div class="right-img">
+        <img src="{% static 'assets/images/model-6.jpg' %}" alt="image" />
       </div>
-    </section>
-
-    <!-- more -->
-
-    <section class="more-about">
-      <div class="wrapper">
-        <div class="top-section">
-          <div class="left-img">
-            <img src="{% static 'assets/images/model-4.jpg' %}" alt="image" />
-          </div>
-          <div class="right-content">
-            <h4>Become an Instructor</h4>
-            <p>
-              Instructors from around the world teach millions of students on
-              Byway. We provide the tools and skills to teach what you love.
-            </p>
-            <a href="" class="button">
-              <small>Start Your Instructor Journey</small>
-              <span
-                ><img
-                  src="{% static 'assets/icons/arrow-right.svg' %}"
-                  alt="icon"
-              /></span>
-            </a>
-          </div>
-        </div>
-
-        <div class="bottom-section">
-          <div class="left-content">
-            <h4>Transform your life through education</h4>
-            <p>
-              Learners around the world are launching new careers, advancing in
-              their fields, and enriching their lives.
-            </p>
-            <a href="" class="button">
-              <small>Checkout Courses</small>
-              <span
-                ><img
-                  src="{% static 'assets/icons/arrow-right.svg' %}"
-                  alt="icon"
-              /></span>
-            </a>
-          </div>
-          <div class="right-img">
-            <img src="{% static 'assets/images/model-6.jpg' %}" alt="image" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- footer -->
-
-    <footer>
-      <div class="wrapper">
-        <div class="items">
-          <div class="item item1">
-            <a href="{% url 'web:home' %}" class="logo">
-              <img src="{% static 'assets/icons/logo-big.svg' %}" alt="icon" />
-            </a>
-            <p>
-              Empowering learners through accessible and engaging online
-              education. <br />
-              Byway is a leading online learning platform dedicated to providing
-              high-quality, flexible, and affordable educational experiences.
-            </p>
-          </div>
-          <div class="item item2">
-            <h5>Get Help</h5>
-            <ul>
-              <li>
-                <a href="">Contact Us</a>
-              </li>
-              <li>
-                <a href="">Latest Articles</a>
-              </li>
-              <li>
-                <a href="">FAQ</a>
-              </li>
-            </ul>
-          </div>
-          <div class="item item3">
-            <h5>Programs</h5>
-            <ul>
-              <li>
-                <a href="">Art & Design</a>
-              </li>
-              <li>
-                <a href="">Business</a>
-              </li>
-              <li>
-                <a href="">IT & Software</a>
-              </li>
-              <li>
-                <a href="">Languages</a>
-              </li>
-              <li>
-                <a href="">Programming</a>
-              </li>
-            </ul>
-          </div>
-          <div class="item item4">
-            <h5>Contact Us</h5>
-            <ul>
-              <li>
-                <a href="">Address: 123 Main Street, Anytown, CA 12345</a>
-              </li>
-              <li><a href="">Tel: +(123) 456-7890</a></li>
-              <li><a href="">Mail: bywayedu@webkul.in</a></li>
-            </ul>
-            <div class="social-media">
-              <ul>
-                <li>
-                  <a href="https://www.facebook.com/" target="blank"
-                    ><img
-                      src="{% static 'assets/icons/facebook.png' %}"
-                      alt="facebook"
-                  /></a>
-                </li>
-                <li>
-                  <a href="https://github.com/" target="blank"
-                    ><img
-                      src="{% static 'assets/icons/github.png' %}"
-                      alt="github"
-                  /></a>
-                </li>
-                <li>
-                  <a href="https://www.google.co.in/" target="blank"
-                    ><img
-                      src="{% static 'assets/icons/google.png' %}"
-                      alt="google"
-                  /></a>
-                </li>
-                <li>
-                  <a href="https://x.com" target="blank"
-                    ><img
-                      src="{% static 'assets/icons/twitter.png' %}"
-                      alt="twitter"
-                  /></a>
-                </li>
-                <li>
-                  <a href="https://www.microsoft.com" target="blank"
-                    ><img
-                      src="{% static 'assets/icons/microsoft.png' %}"
-                      alt="microsoft"
-                  /></a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="{% static 'javascript/swiper.js' %}"></script>
-  </body>
-</html>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block extra_js %}
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script type="module" src="{% static 'javascript/starRating.js' %}"></script>
+  <script src="{% static 'javascript/swiper.js' %}"></script>
+  <script src="{% static 'javascript/home.js' %}"></script>
+{% endblock %}
