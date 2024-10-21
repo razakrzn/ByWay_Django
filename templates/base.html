@@ -111,26 +111,28 @@
                 <a href="">Address: 123 Main Street, Anytown, CA 12345</a>
               </li>
               <li><a href="">Tel: +(123) 456-7890</a></li>
-              <li><a href="">Mail: bywayedu@webkul.in</a></li>
+              <li>
+                <a href="mailto:bywayedu@webkul.in">Mail: bywayedu@webkul.in</a>
+              </li>
             </ul>
             <div class="social-media">
               <ul>
                 <li>
-                  <a href="https://www.facebook.com/" target="blank"
+                  <a href="https://www.facebook.com/" target="_blank"
                     ><img
                       src="{% static 'assets/icons/facebook.png' %}"
                       alt="facebook"
                   /></a>
                 </li>
                 <li>
-                  <a href="https://github.com/" target="blank"
+                  <a href="https://github.com/" target="_blank"
                     ><img
                       src="{% static 'assets/icons/github.png' %}"
                       alt="github"
                   /></a>
                 </li>
                 <li>
-                  <a href="https://www.google.co.in/" target="blank"
+                  <a href="https://www.google.co.in/" target="_blank"
                     ><img
                       src="{% static 'assets/icons/google.png' %}"
                       alt="google"
@@ -159,6 +161,5 @@
 
     <!-- JavaScript files -->
     {% block extra_js %} {% endblock %}
-
   </body>
 </html>

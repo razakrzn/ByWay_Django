@@ -1,6 +1,4 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block title %}ByWay{% endblock %}
+{% extends 'base.html' %} {% load static %} {% block title %}ByWay{% endblock %}
 {% block content %}
 <!-- sportlight -->
 <section class="sportlight">
@@ -54,8 +52,6 @@
 
 <section class="main">
   <div class="wrapper">
-    <!-- wrapper -->
-
     <!-- top categories -->
     <div class="top-categories">
       <div class="top">
@@ -64,13 +60,13 @@
       </div>
       <div class="widgets">
         {% for category in categories %}
-        <a href="" class="card">
+        <a href="{% url 'web:category_details' category.id %}" class="card">
           <div class="content-wrapper">
             <span class="round-bg">
               <img src="{{category.icon.url}}" alt="astrology-icon" />
             </span>
             <h4>{{category.name}}</h4>
-            <p>{{category.courses_count}}</p>
+            <p>{{category.courses.count}}</p>
           </div>
         </a>
         {% endfor %}
@@ -88,7 +84,7 @@
         <a href="{% url 'web:course_details' course.id %}" class="card">
           <div class="content-wrapper">
             <div class="image-wrapper">
-              <img src="{{course.image.url}}" alt="image" />
+              <img src="{{course.image.url}}" alt="Course image" />
             </div>
             <h5>{{ course.title|truncatewords:10 }}</h5>
             <p>{{ course.instructor }}</p>
@@ -113,17 +109,20 @@
       </div>
       <div class="widgets">
         {% for instructor in top_instructors %}
-        <a href="" class="card">
+        <a href="{% url 'web:instructor_courses' instructor.id %}" class="card">
           <div class="content-wrapper">
             <div class="image-wrapper">
-              <img src="{{ instructor.image.url }}" alt="image" />
+              <img src="{{ instructor.image.url }}" alt="Instructor image" />
             </div>
             <h5>{{ instructor.name }}</h5>
             <small>{{ instructor.designation }}</small>
             <span class="line"></span>
             <div class="rating-box">
               <span class="star-box">
-                <img src="{% static 'assets/icons/star.svg' %}" alt="star" />
+                <img
+                  src="{% static 'assets/icons/star.svg' %}"
+                  alt="Star icon"
+                />
                 <label for="">{{ instructor.rating }}</label>
               </span>
               <span class="students-count">
@@ -142,7 +141,7 @@
         >
           <div class="widgets">
             {% for instructor in remaining_instructors %}
-            <a href="" class="card">
+            <a href="{% url 'web:instructor_courses' instructor.id %}" class="card">
               <div class="content-wrapper">
                 <div class="image-wrapper">
                   <img src="{{ instructor.image.url }}" alt="image" />
@@ -169,8 +168,6 @@
         </div>
       </div>
     </div>
-
-    <!-- wrapper -->
   </div>
 </section>
 
@@ -278,10 +275,11 @@
     </div>
   </div>
 </section>
+
 {% endblock %}
 {% block extra_js %}
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script type="module" src="{% static 'javascript/starRating.js' %}"></script>
-  <script src="{% static 'javascript/swiper.js' %}"></script>
-  <script src="{% static 'javascript/home.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script type="module" src="{% static 'javascript/starRating.js' %}"></script>
+<script src="{% static 'javascript/swiper.js' %}"></script>
+<script src="{% static 'javascript/home.js' %}"></script>
 {% endblock %}

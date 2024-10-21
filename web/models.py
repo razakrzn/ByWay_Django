@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Testimonial(models.Model):
     name = models.CharField(max_length=100)
     designation = models.CharField(max_length=100)
@@ -52,10 +51,10 @@ class Courses(models.Model):
     rating_count = models.IntegerField()
     duration = models.TextField()  
     instructor = models.ForeignKey('Instructors', on_delete=models.CASCADE)
-    languages = models.ManyToManyField('Languages', related_name='courses')  
+    languages = models.ManyToManyField('Languages', related_name='courses')
     price = models.DecimalField(max_digits=10, decimal_places=1) 
     discount_percent = models.DecimalField(max_digits=2, decimal_places=0, default=0.0) 
-    category = models.ForeignKey('Categories', on_delete=models.CASCADE)
+    categories = models.ManyToManyField(Categories, related_name='courses', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -68,13 +67,13 @@ class Courses(models.Model):
     class Meta:
             ordering = ["id"]
 
+
 class Syllabus(models.Model):
-    top_course = models.ForeignKey(Courses, related_name='syllabus', on_delete=models.CASCADE)
-    title = models.CharField(max_length=255)
-    lessons = models.PositiveIntegerField()
-    duration = models.CharField(max_length=50)
+    course = models.ForeignKey('Courses', related_name='syllabi', on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    lessons = models.IntegerField(null=True)  
+    duration = models.CharField(max_length=50, null=True)
+
 
     def __str__(self):
         return self.title
-
-

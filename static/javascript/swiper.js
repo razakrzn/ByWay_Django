@@ -11,7 +11,7 @@ document
   });
 
 const swiper = new Swiper(".swiper", {
-  loop: true,
+  loop: false,
   slidesPerView: 3,
   spaceBetween: 15,
   slidesPerGroup: 3,

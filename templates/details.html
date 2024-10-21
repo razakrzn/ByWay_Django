@@ -1,5 +1,4 @@
-{% extends 'base.html' %} {% load static %} {% block title %}ByWay | Details{% endblock %}
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block title %}ByWay | Details{% endblock %} {% block content %}
 <section class="sportlight-details">
   <div class="wrapper">
     <div class="nav-container">
@@ -54,11 +53,7 @@
         <span class="language-icon">
           <img src="{% static 'assets/icons/language.svg' %}" alt="language" />
         </span>
-        <span class="languages">
-          {% for language in course.languages.all %}
-              {{ language }}{% if not forloop.last %}, {% endif %}
-          {% endfor %}
-      </span>
+        <span class="languages"> {{ course.languages.all|join:", " }} </span>
       </div>
     </div>
 
@@ -150,22 +145,22 @@
     <div class="button-container">
       <div class="boxes">
         <div class="box">
-          <button>Description</button>
+          <button data-target="#description-section">Description</button>
         </div>
         <div class="box">
-          <button>Instructor</button>
+          <button data-target="#instructor-section">Instructor</button>
         </div>
         <div class="box">
-          <button>Syllabus</button>
+          <button data-target="#syllabus-section">Syllabus</button>
         </div>
         <div class="box">
-          <button>Reviews</button>
+          <button data-target="#reviews-section">Reviews</button>
         </div>
       </div>
     </div>
 
     <!-- Description section  -->
-    <section class="Description">
+    <section id="description-section" class="Description">
       <div class="text-wrapper">
         <div class="top-section">
           <h2 class="title">Course Description</h2>
@@ -180,7 +175,7 @@
 
     <!-- Instructor section  -->
 
-    <section class="instructor">
+    <section id="instructor-section" class="instructor">
       <div class="instructor-wrapper">
         <h4 class="title">Instructor</h4>
         <h4 class="name">{{course.instructor.name}}</h4>
@@ -225,11 +220,11 @@
     </section>
 
     <!-- Syllabus section  -->
-    <section class="syllabus">
+    <section id="syllabus-section" class="syllabus">
       <div class="syllabus-wrapper">
         <h4 class="title">Syllabus</h4>
         <div class="table">
-          {% for item in syllabus_items %}
+          {% for syllabus in syllabi %}
           <div class="row">
             <div class="first-column">
               <span class="icon">
@@ -238,11 +233,11 @@
                   alt="arrow-down"
                 />
               </span>
-              <h5 class="sub-title">{{ item.title }}</h5>
+              <h5 class="sub-title">{{ syllabus.title }}</h5>
             </div>
             <div class="second-column">
-              <p class="lessons">{{ item.lessons }} Lessons</p>
-              <p class="hour">{{ item.duration }} Hours</p>
+              <p class="lessons">{{ syllabus.lessons }} Lessons</p>
+              <p class="hour">{{ syllabus.duration }} Hours</p>
             </div>
           </div>
           {% endfor %}
@@ -251,7 +246,7 @@
     </section>
 
     <!-- Reviews section  -->
-    <section class="reviews">
+    <section id="reviews-section" class="reviews">
       <h4 class="title">Learner Reviews</h4>
       <div class="reviews-wrapper">
         <div class="left">
@@ -277,7 +272,7 @@
               <h5 class="name">Mark Doe</h5>
             </div>
             <div class="contents">
-              <div class="top">
+              <div class="date">
                 <span class="star-icon">
                   <img
                     src="{% static 'assets/icons/star.svg' %}"
@@ -307,7 +302,7 @@
               <h5 class="name">Mark Doe</h5>
             </div>
             <div class="contents">
-              <div class="top">
+              <div class="date">
                 <span class="star-icon">
                   <img
                     src="{% static 'assets/icons/star.svg' %}"
@@ -337,7 +332,7 @@
               <h5 class="name">Mark Doe</h5>
             </div>
             <div class="contents">
-              <div class="top">
+              <div class="date">
                 <span class="star-icon">
                   <img
                     src="{% static 'assets/icons/star.svg' %}"
@@ -407,17 +402,22 @@
                 alt="quote-icon"
               />
             </span>
-            <p>"{{testimonial.description}}"</p>
+            <p>"{{ testimonial.description }}"</p>
             <div class="author-info">
               <span class="author-profile">
-                <img src="{{ testimonial.image.url}}" alt="image" />
+                <img
+                  src="{{ testimonial.image.url }}"
+                  alt="{{ testimonial.name }}"
+                />
               </span>
               <div class="text">
-                <h5>{{testimonial.name}}</h5>
+                <h5>{{ testimonial.name }}</h5>
                 <small>{{testimonial.designation}}</small>
               </div>
             </div>
           </a>
+          {% empty %}
+          <p>No testimonials available.</p>
           {% endfor %}
         </div>
       </div>
@@ -425,13 +425,15 @@
   </div>
 </section>
 
+<!-- testimonials  -->
+
 <!-- footer -->
 
 {% endblock %}
-
 {% block extra_js %}
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script type="module" src="{% static 'javascript/starRating.js' %}"></script>
-  <script src="{% static 'javascript/starPyramid.js' %}" defer></script>
-  <script src="{% static 'javascript/swiper.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script type="module" src="{% static 'javascript/starRating.js' %}"></script>
+<script src="{% static 'javascript/swiper.js' %}"></script>
+<script src="{% static 'javascript/starPyramid.js' %}" defer></script>
+<script src="{% static 'javascript/navButtons.js' %}"></script>
 {% endblock %}

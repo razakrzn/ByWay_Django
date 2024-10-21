@@ -676,6 +676,9 @@ header .wrapper .account-container .sign-up {
   color: #000000;
   text-align: left;
 }
+.swiper-pagination {
+  display: none;
+}
 
 .more-about {
 }
@@ -1292,7 +1295,7 @@ footer .wrapper .items .item4 .social-media ul li a img {
     width: calc(100% - -10px);
   }
 
-  .main .wrapper .top-courses .widgets .card .content-wrapper h5{
+  .main .wrapper .top-courses .widgets .card .content-wrapper h5 {
     font-size: 22px;
     margin-top: 15px;
   }
@@ -1345,6 +1348,10 @@ footer .wrapper .items .item4 .social-media ul li a img {
     padding: 8px 16px 8px 16px;
     width: 100%;
     height: 100%;
+  }
+
+  .swiper-pagination {
+    display: block;
   }
 
   .more-about .wrapper .top-section .left-img {
@@ -2553,10 +2560,11 @@ footer .wrapper .items .item4 .social-media ul li a img {
   .right
   .right-wrapper
   .contents
-  .top {
+  .date {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  justify-content: start;
 }
 
 .main-details
@@ -2566,7 +2574,7 @@ footer .wrapper .items .item4 .social-media ul li a img {
   .right
   .right-wrapper
   .contents
-  .top
+  .date
   .star-icon {
   margin-right: 5px;
 }
@@ -2578,7 +2586,7 @@ footer .wrapper .items .item4 .social-media ul li a img {
   .right
   .right-wrapper
   .contents
-  .top
+  .date
   .star-icon
   img {
 }
@@ -2590,7 +2598,7 @@ footer .wrapper .items .item4 .social-media ul li a img {
   .right
   .right-wrapper
   .contents
-  .top
+  .date
   .rating {
   font-size: 18px;
   font-weight: 600;
@@ -2604,7 +2612,7 @@ footer .wrapper .items .item4 .social-media ul li a img {
   .right
   .right-wrapper
   .contents
-  .top
+  .date
   .review-date {
   margin-left: 30px;
   font-size: 14px;

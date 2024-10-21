@@ -25,6 +25,7 @@ admin.site.register(Categories, CategoriesAdmin)
 class InstructorsAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'designation',)
 
+
 admin.site.register(Instructors, InstructorsAdmin)
 
 
