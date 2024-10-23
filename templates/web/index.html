@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load static %} {% block title %}ByWay{% endblock %}
+{% extends 'web/base.html' %} {% load static %} {% block title %}ByWay{% endblock %}
 {% block content %}
 <!-- sportlight -->
 <section class="sportlight">
@@ -141,7 +141,10 @@
         >
           <div class="widgets">
             {% for instructor in remaining_instructors %}
-            <a href="{% url 'web:instructor_courses' instructor.id %}" class="card">
+            <a
+              href="{% url 'web:instructor_courses' instructor.id %}"
+              class="card"
+            >
               <div class="content-wrapper">
                 <div class="image-wrapper">
                   <img src="{{ instructor.image.url }}" alt="image" />
@@ -276,8 +279,7 @@
   </div>
 </section>
 
-{% endblock %}
-{% block extra_js %}
+{% endblock %} {% block extra_js %}
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script type="module" src="{% static 'javascript/starRating.js' %}"></script>
 <script src="{% static 'javascript/swiper.js' %}"></script>

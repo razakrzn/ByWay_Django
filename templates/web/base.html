@@ -40,11 +40,30 @@
           </a>
         </div>
         <div class="account-container">
+          {% if request.user.is_authenticated %}
+          <a href="#" class="cart-icon">
+            <img
+              src="{% static 'assets/icons/wishlist.svg' %}"
+              alt="wishlist icon"
+            />
+          </a>
+          <a href="#" class="cart-icon">
+            <img
+              src="{% static 'assets/icons/cart.svg' %}"
+              alt="cart icon"
+            /> </a
+          ><a href="#" class="cart-icon">
+            <img src="{% static 'assets/icons/bell.svg' %}" alt="cart icon" />
+          </a>
+          <a href="#" class="account">{{ request.user.first_name|default:request.user.username|slice:":1" }}</a>
+          <a href="{% url 'users:logout' %}" class="log-in">log out</a>
+          {% else %}
           <span class="cart-icon">
             <img src="{% static 'assets/icons/cart.svg' %}" alt="cart icon" />
           </span>
-          <a href="#" class="log-in">log in</a>
+          <a href="{% url 'users:login' %}" class="log-in">log in</a>
           <a href="#" class="sign-up">sign up</a>
+          {% endif %}
         </div>
       </div>
     </header>

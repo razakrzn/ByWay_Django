@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load static %} {% block title %}ByWay | Details{% endblock %} {% block content %}
+{% extends 'web/base.html' %} {% load static %} {% block title %}ByWay | Details{% endblock %} {% block content %}
 <section class="sportlight-details">
   <div class="wrapper">
     <div class="nav-container">
@@ -14,7 +14,7 @@
           </span>
         </li>
         <li>
-          <a href="">Top Courses</a>
+          <a href="{% url 'web:top_courses' %}">Top Courses</a>
           <span class="arrow">
             <img
               class="icon"
@@ -427,10 +427,42 @@
 
 <!-- testimonials  -->
 
+<!-- more courses like this -->
+<section class="main">
+  <div class="wrapper">
+    <div class="top-courses">
+      <div class="top">
+        <h3>More Courses Like This</h3>
+        <a href="{% url 'web:top_courses' %}" class="see-all">See All</a>
+      </div>
+      <div class="widgets">
+        {% for course in courses|slice:"4" %}
+        <a href="{% url 'web:course_details' course.id %}" class="card">
+          <div class="content-wrapper">
+            <div class="image-wrapper">
+              <img src="{{course.image.url}}" alt="Course image" />
+            </div>
+            <h5>{{ course.title|truncatewords:10 }}</h5>
+            <p>{{ course.instructor }}</p>
+            <div class="rating-container">
+              <span class="rating">{{ course.rating }}</span>
+              <span class="star star-rating-container"></span>
+              <small>({{ course.rating_count }} Ratings)</small>
+            </div>
+            <p class="duration">{{ course.duration }}</p>
+            <h4>${{ course.discounted_price }}</h4>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+<!-- more courses like this -->
+
 <!-- footer -->
 
-{% endblock %}
-{% block extra_js %}
+{% endblock %} {% block extra_js %}
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script type="module" src="{% static 'javascript/starRating.js' %}"></script>
 <script src="{% static 'javascript/swiper.js' %}"></script>
